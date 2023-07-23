@@ -1,0 +1,36 @@
+
+1. Create a new C# class file for the database connection:
+
+  // DatabaseHelper.cs
+
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+
+public static class DatabaseHelper
+{
+    private static readonly string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+    public static SqlConnection GetOpenConnection()
+    {
+        SqlConnection connection = new SqlConnection(connectionString);
+        connection.Open();
+        return connection;
+    }
+    
+}
+
+==================================================================================================================================================
+2. In your web.config file, add the connection string under the <connectionStrings> section:
+
+<configuration>
+  <connectionStrings>
+  
+    <add name="DefaultConnection" 
+    connectionString="Data Source=your_server;Initial Catalog=your_database;User Id=your_username;Password=your_password;" 
+    providerName="System.Data.SqlClient" />
+  
+  </connectionStrings>
+  <!-- Other configurations -->
+</configuration>
