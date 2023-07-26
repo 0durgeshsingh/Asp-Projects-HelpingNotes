@@ -45,7 +45,8 @@ DataAccessLayer dbcontext = new DataAccessLayer();
 
                 foreach (var dataEntry in dataEntries)
                 {
-                    using (var command = new MySqlCommand("INSERT INTO DataEntries (Name, Description) VALUES (@Name, @Description)", connection))
+                    using (var command =
+                    new MySqlCommand("INSERT INTO DataEntries (Name, Description) VALUES (@Name, @Description)", connection))
                     {
                         command.Parameters.AddWithValue("@Name", dataEntry.Name);
                         command.Parameters.AddWithValue("@Description", dataEntry.Description);
